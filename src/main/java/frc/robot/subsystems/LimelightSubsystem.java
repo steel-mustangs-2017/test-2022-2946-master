@@ -63,7 +63,8 @@ public class LimelightSubsystem extends SubsystemBase {
   
         NetworkTableEntry ty  = table.getEntry("ty");
         //d = (h2-h1) / tan(a1+a2)
-        double distance = (LimelightConstants.L_HEIGHT / LimelightConstants.H_HEIGHT) / Math.tan(LimelightConstants.L_ANGLE + ty.getDouble(0.0));
+        System.out.println(ty.getDouble(0));
+        double distance = (LimelightConstants.H_HEIGHT - LimelightConstants.L_HEIGHT) / Math.tan(Math.toRadians( LimelightConstants.L_ANGLE + ty.getDouble(0.0)));
   
         return distance;
     }
@@ -71,8 +72,7 @@ public class LimelightSubsystem extends SubsystemBase {
     public LimelightSubsystem(){
         //System.out.println("------------- line out");
         table.getEntry("stream").setNumber(0);
-        setLedOff();
-        setCamera();
+        
     }
     
     public void stream() {

@@ -12,6 +12,7 @@ import frc.robot.commands.Control_Commands.ClimberCommand;
 import frc.robot.commands.Control_Commands.DriveCommand;
 import frc.robot.commands.Control_Commands.IndexShooterCommand;
 import frc.robot.commands.Control_Commands.IntakeCommand;
+import frc.robot.commands.Control_Commands.LimelightTest;
 import frc.robot.commands.Old_Commands.ManualAim;
 import frc.robot.commands.Old_Commands.ShootCommand;
 import frc.robot.subsystems.*;
@@ -51,7 +52,7 @@ public class RobotContainer {
   private final IntakeCommand IntakeCommand = new IntakeCommand(operatorController,intakeSubsystem);
   private final ClimberCommand ClimberCommand = new ClimberCommand(climberSubsytem, operatorController);
   private final IndexShooterCommand indexShooterCommand  = new IndexShooterCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, operatorController, indexerSubsystem);
-
+  private final LimelightTest limelightTest = new LimelightTest(limelightSubsystem, turretSubsystemNew, operatorController);
 
   //private final MotorTest motorTest = new MotorTest(chassisSubsystem, operatorController);
   //private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
@@ -87,10 +88,11 @@ public class RobotContainer {
 
     chassisSubsystem.setDefaultCommand(driveCommand);
     intakeSubsystem.setDefaultCommand(IntakeCommand);
-    //climberSubsytem.setDefaultCommand(ClimberCommand);
+    climberSubsytem.setDefaultCommand(ClimberCommand);
     shooterSubsystemNew.setDefaultCommand(indexShooterCommand);
     turretSubsystemNew.setDefaultCommand(indexShooterCommand);
     indexerSubsystem.setDefaultCommand(indexShooterCommand);
+   //turretSubsystemNew.setDefaultCommand(limelightTest);
     //shooterSubsystem.setDefaultCommand(shootCommand);
     //turretSubsystem.setDefaultCommand(manualAim);
     

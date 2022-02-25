@@ -35,25 +35,27 @@ public final static class ShooterConstants {
 
     
 
-        public final static double SHOOT_P = .5;
+        public final static double SHOOT_P = .6;
         public final static double SHOOT_I = 0;
-        public final static double SHOOT_D = 10;
+        public final static double SHOOT_D = 20;
 
         public final static double SHOOT_ANGLE = 70;
         public final static double SHOOT_DELTA_H = 3.3;
 
-        public final static int SHOOTER_ENCODER_TICKS = 2048;
-        public static final double EFFICENCY = .65;
+        public final static double SHOOTER_ENCODER_TICKS = 2048/600;
+        public static final double EFFICENCY = 1;
 
         //////////////////////////////////////////////////////////
 
-        public final static double TURRET_P = 3;
-        public final static double TURRET_I = 3;
-        public final static double TURRET_D = 3;
+        public final static double TURRET_P = 0.05;
+        public final static double TURRET_I = 0;
+        public final static double TURRET_D = 0;
 
         public final static double TURRET_RATIO = (1/5)*(36/200);
-        public final static int TURRET_ENCODER_TICKS = 2048;
-        public static final double ANGLE_TOLERENCE = 2;
+        public final static int TURRET_ENCODER_TICKS = 125;
+        public static final double ANGLE_TOLERENCE = 1.75;
+        public static final double MAX_ANGLE = 100; //100
+        public static final double MIN_ANGLE = -180; //180
     
 }
     // All BAG motors
@@ -69,8 +71,8 @@ public final static class ShooterConstants {
         public static final double LIMELIGHT_KI = 0;
         public static final double LIMELIGHT_KD = 0;
 
-        public final static double L_HEIGHT = 3;
-        public final static double L_ANGLE = 3;
+        public final static double L_HEIGHT = 2.92;
+        public final static double L_ANGLE = 25.75;
         public final static double H_HEIGHT = 8.6666666;
     }
 
@@ -107,7 +109,7 @@ public final static class ClimberConstants {
         public static final int CLIMBER_MAIN_ID = 5; // Right Stick Y-Axis
         public static final int CLIMBER_PIVOT_ID = 4; // Right Stick X-Axis
 
-        public static final int SHOOTER_VISION_START_ID = 0; //Button A
+        public static final int SHOOTER_VISION_START_ID = 2; //Button B
         public static final int TURRET_MANUAL_AXIS_ID = 0; // Left Stick X-Axis
         public static final int INDEXER_FEEDER_ID = 3; //Button X
         public static final int INDEXER_MANUAL_ID = 5; //Left Bumper

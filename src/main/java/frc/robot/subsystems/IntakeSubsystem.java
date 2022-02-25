@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants.IntakeConstants;
@@ -19,6 +20,7 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor.setInverted(false);
 
         intakeMove.configFactoryDefault();
+        intakeMove.setNeutralMode(NeutralMode.Coast);
 
         
 

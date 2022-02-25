@@ -79,14 +79,14 @@ public class ShooterSubsystemNew extends SubsystemBase {
     return ev/ShooterConstants.SHOOTER_ENCODER_TICKS;
   }
   public double RPM_to_Encoder(double RPM){
-    return RPM/ShooterConstants.SHOOTER_ENCODER_TICKS;
+    return RPM*ShooterConstants.SHOOTER_ENCODER_TICKS;
   }
 
   public void ShootRPM(double RPM){
 
-    System.out.println(getRPM());
-    shooterRight.set(ControlMode.Velocity, RPM_to_Encoder(RPM));
-    shooterLeft.set(ControlMode.Velocity, RPM_to_Encoder(RPM));
+    System.out.println("RPM: " + getRPM());
+    shooterRight.set(ControlMode.Velocity, RPM_to_Encoder(RPM) * 1.1);
+    shooterLeft.set(ControlMode.Velocity, RPM_to_Encoder(RPM) *1.1);
 
     
   }
@@ -98,12 +98,13 @@ public class ShooterSubsystemNew extends SubsystemBase {
   public double Dist_to_RPM(double distance){
     double a = ShooterConstants.SHOOT_ANGLE;
     double h = ShooterConstants.SHOOT_DELTA_H;
-    double v = Math.sqrt(-(9.8*distance * (1 +Math.pow(Math.tan(a), 2)))/(2*h - 2*distance*Math.tan(a)));
+    double v = Math.sqrt(-(9.8*distance * (1 +Math.pow(Math.tan(Math.toRadians(a)), 2)))/(2*h - 2*distance*Math.tan(Math.toRadians(a))));
+    System.out.println("VEL:" + v);
+    double c = Math.PI*4;
 
-    double c = Math.PI*6;
+    double RPM = (v*c) / ShooterConstants.EFFICENCY;
 
-    double RPM = (v/c) / ShooterConstants.EFFICENCY;
-
+    System.out.println("RPM2:" + RPM);
 
     return RPM;
   }

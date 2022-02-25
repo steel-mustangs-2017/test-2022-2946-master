@@ -33,31 +33,17 @@ public class ClimberCommand extends CommandBase {
 
 
       double climbaxis = -operatorController.getRawAxis(ControlerConstants.CLIMBER_MAIN_ID);
-      double pivotaxis = -operatorController.getRawAxis(ControlerConstants.CLIMBER_PIVOT_ID);
+     // double pivotaxis = -operatorController.getRawAxis(ControlerConstants.CLIMBER_PIVOT_ID);
       
      
        if(Math.abs(climbaxis) < .15){
         climbaxis = 0;
       } 
-      if(Math.abs(pivotaxis) < .15){
-        pivotaxis = 0;
-      } 
+     
       
 
 
-       if(Math.abs(pivotaxis) > Math.abs(climbaxis)){
-        climberSubsytem.Pivotforward(pivotaxis);
-        climberSubsytem.ClimbUp(0);
-        //System.out.println("climberSubsytem.Pivotforward("+pivotaxis);
-      }
-      else if (Math.abs(pivotaxis) < Math.abs(climbaxis)){
-        climberSubsytem.ClimbUp(climbaxis);
-        climberSubsytem.Pivotforward(0);
-      }
-      else{
-        climberSubsytem.Pivotforward(0);
-        climberSubsytem.ClimbUp(0);
-      }
+       climberSubsytem.ClimbUp(climbaxis);
     
 
     }

@@ -50,6 +50,7 @@ public class IndexShooterCommand extends CommandBase {
     turretSubsystemNew.StopTurn();
     
     indexerSubsystem.StopIndex();
+    turretSubsystemNew.reset();
     
   }
 
@@ -62,12 +63,12 @@ public class IndexShooterCommand extends CommandBase {
         limelightSubsystem.setLedOn();
         limelightSubsystem.setVision();
                 if(limelightSubsystem.validTarget() == 1){
-                  System.out.print("Target Found");
+                  System.out.println("Target Found");
                   
-                  shooterSubsystemNew.ShootDistance(limelightSubsystem.getDistance());
+                  shooterSubsystemNew.ShootDistance(limelightSubsystem.getDistance());;
                   turretSubsystemNew.AimShooter(limelightSubsystem.getAngle());
 
-                      if(shooterSubsystemNew.At_Speed() && limelightSubsystem.getAngle() < ShooterConstants.ANGLE_TOLERENCE){
+                      /*if(shooterSubsystemNew.At_Speed() && limelightSubsystem.getAngle() < ShooterConstants.ANGLE_TOLERENCE){
                         indexerSubsystem.RunIndex();
                         indexerSubsystem.RunIndexerFeeder();
                         turretSubsystemNew.StopTurn();
@@ -76,11 +77,14 @@ public class IndexShooterCommand extends CommandBase {
                       else{
                         shooterSubsystemNew.ShootDistance(limelightSubsystem.getDistance());
                         turretSubsystemNew.AimShooter(limelightSubsystem.getAngle());
-                      }
+                      }*/
                 }
                 else{
                   System.out.println("Looking For Target");
-                  turretSubsystemNew.TurnManual(operatorControler.getRawAxis(ControlerConstants.TURRET_MANUAL_AXIS_ID));
+                  double turretturn = operatorControler.getRawAxis(ControlerConstants.TURRET_MANUAL_AXIS_ID);
+
+                  if(Math.abs(turretturn) < .25){turretturn = 0;}
+                  turretSubsystemNew.TurnManual(turretturn/4);
                   if(operatorControler.getRawButton(ControlerConstants.INDEXER_MANUAL_ID)){indexerSubsystem.RunIndex();}
                   else{indexerSubsystem.StopIndex();}
 
@@ -95,8 +99,8 @@ public class IndexShooterCommand extends CommandBase {
 
         double turretturn = operatorControler.getRawAxis(ControlerConstants.TURRET_MANUAL_AXIS_ID);
 
-        if(Math.abs(turretturn) < 1.5){turretturn = 0;}
-        turretSubsystemNew.TurnManual(turretturn);
+        if(Math.abs(turretturn) < .15){turretturn = 0;}
+        turretSubsystemNew.TurnManual(turretturn/4);
 
         shooterSubsystemNew.ShootManual(operatorControler.getRawAxis(ControlerConstants.SHOOTER_MANUAL_AXIS_ID));
 
