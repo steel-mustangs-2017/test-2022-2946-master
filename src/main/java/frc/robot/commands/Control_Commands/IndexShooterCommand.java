@@ -5,6 +5,7 @@
 package frc.robot.commands.Control_Commands;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.ControlerConstants;
 import frc.robot.Constants.ShooterConstants;
@@ -21,6 +22,8 @@ public class IndexShooterCommand extends CommandBase {
   private final IndexerSubsystem indexerSubsystem;
 
   private final Joystick operatorControler;
+
+  private final Timer shootTime = new Timer();
   
   /** Creates a new Index_Shooter_Command. */
   public IndexShooterCommand(ShooterSubsystemNew shooterSubsystemNew, LimelightSubsystem limelightSubsystem, 
@@ -68,7 +71,7 @@ public class IndexShooterCommand extends CommandBase {
                   shooterSubsystemNew.ShootDistance(limelightSubsystem.getDistance());;
                   turretSubsystemNew.AimShooter(limelightSubsystem.getAngle());
 
-                      /*if(shooterSubsystemNew.At_Speed() && limelightSubsystem.getAngle() < ShooterConstants.ANGLE_TOLERENCE){
+                      if(shooterSubsystemNew.At_Speed(limelightSubsystem.getDistance()) && limelightSubsystem.getAngle() < ShooterConstants.ANGLE_TOLERENCE){
                         indexerSubsystem.RunIndex();
                         indexerSubsystem.RunIndexerFeeder();
                         turretSubsystemNew.StopTurn();
@@ -77,9 +80,10 @@ public class IndexShooterCommand extends CommandBase {
                       else{
                         shooterSubsystemNew.ShootDistance(limelightSubsystem.getDistance());
                         turretSubsystemNew.AimShooter(limelightSubsystem.getAngle());
-                      }*/
+                      }
                 }
-                else{
+
+                else if (shootTime.get() > 4){
                   System.out.println("Looking For Target");
                   double turretturn = operatorControler.getRawAxis(ControlerConstants.TURRET_MANUAL_AXIS_ID);
 
@@ -90,7 +94,11 @@ public class IndexShooterCommand extends CommandBase {
 
                   if(operatorControler.getRawButton(ControlerConstants.INDEXER_FEEDER_ID)){indexerSubsystem.RunIndexerFeeder();}
                   else{indexerSubsystem.StopIndexerFeeder();}
-
+                  shootTime.stop();
+                  shootTime.reset();
+                }
+                else if(shootTime.get() == 0){
+                  shootTime.start();
                 }
               }
       else{
@@ -108,6 +116,9 @@ public class IndexShooterCommand extends CommandBase {
         else{indexerSubsystem.StopIndex();}
 
         if(operatorControler.getRawButton(ControlerConstants.INDEXER_FEEDER_ID)){indexerSubsystem.RunIndexerFeeder();}
+        
+
+        else if(operatorControler.getRawButton(ControlerConstants.INTAKE_OUT_ID)){indexerSubsystem.ReverseIndex();}
         else{indexerSubsystem.StopIndexerFeeder();}
 
       }

@@ -9,7 +9,7 @@ public class IndexerSubsystem extends SubsystemBase{
     private final WPI_TalonSRX indexerTop = new WPI_TalonSRX(IndexerConstants.IndexerTop);
     private final WPI_TalonSRX indexerBot = new WPI_TalonSRX(IndexerConstants.IndexerBot);
     private final WPI_TalonSRX indexerFeeder = new WPI_TalonSRX(IndexerConstants.IndexerFeeder); 
-    private final double speed = 1; 
+    private final double speed = .5; 
     public IndexerSubsystem() {
         indexerTop.configFactoryDefault();
         indexerBot.configFactoryDefault();
@@ -32,6 +32,11 @@ public class IndexerSubsystem extends SubsystemBase{
     indexerBot.set(speed);
     
     } 
+    public void ReverseIndex() { 
+        indexerTop.set(-speed);
+        indexerBot.set(-speed);
+        
+        } 
 
     /*public void RumbleIndex() {
         indexerTop.set(speed);

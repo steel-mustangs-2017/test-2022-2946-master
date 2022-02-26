@@ -43,7 +43,7 @@ public final static class ShooterConstants {
         public final static double SHOOT_DELTA_H = 3.3;
 
         public final static double SHOOTER_ENCODER_TICKS = 2048/600;
-        public static final double EFFICENCY = 1;
+        public static final double EFFICENCY = .36;
 
         //////////////////////////////////////////////////////////
 

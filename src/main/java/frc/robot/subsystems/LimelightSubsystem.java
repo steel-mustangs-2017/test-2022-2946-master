@@ -65,7 +65,7 @@ public class LimelightSubsystem extends SubsystemBase {
         //d = (h2-h1) / tan(a1+a2)
         System.out.println(ty.getDouble(0));
         double distance = (LimelightConstants.H_HEIGHT - LimelightConstants.L_HEIGHT) / Math.tan(Math.toRadians( LimelightConstants.L_ANGLE + ty.getDouble(0.0)));
-  
+        System.out.println("DIST: "+ distance);
         return distance;
     }
     

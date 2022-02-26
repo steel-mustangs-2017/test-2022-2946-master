@@ -98,21 +98,21 @@ public class ShooterSubsystemNew extends SubsystemBase {
   public double Dist_to_RPM(double distance){
     double a = ShooterConstants.SHOOT_ANGLE;
     double h = ShooterConstants.SHOOT_DELTA_H;
-    double v = Math.sqrt(-(9.8*distance * (1 +Math.pow(Math.tan(Math.toRadians(a)), 2)))/(2*h - 2*distance*Math.tan(Math.toRadians(a))));
+    double v = Math.sqrt(-(32.17*(distance*distance) * (1 +Math.pow(Math.tan(Math.toRadians(a)), 2)))/(2*h - 2*distance*Math.tan(Math.toRadians(a))));
     System.out.println("VEL:" + v);
-    double c = Math.PI*4;
+    double c = 3.14159265*(4.0/12.0);
 
-    double RPM = (v*c) / ShooterConstants.EFFICENCY;
+    float RPM = (((float)(v/c)) * 60) / (float)ShooterConstants.EFFICENCY;
 
-    System.out.println("RPM2:" + RPM);
+    System.out.println("RPM3:" + RPM);
 
     return RPM;
   }
 
 
 
-  public boolean At_Speed(){
-    if(Right_PID.atSetpoint()&& Left_PID.atSetpoint()){
+  public boolean At_Speed(double target){
+    if(Math.abs(Dist_to_RPM(target)-getRPM()) < 200){
       return true;
     }
     else{return false;}
