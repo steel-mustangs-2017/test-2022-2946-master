@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.ControlerConstants;
+import frc.robot.commands.Auto.DriveForward;
+import frc.robot.commands.Auto.IntakeAuto;
 import frc.robot.commands.Control_Commands.ClimberCommand;
 import frc.robot.commands.Control_Commands.DriveCommand;
 import frc.robot.commands.Control_Commands.IndexShooterCommand;
@@ -17,6 +19,7 @@ import frc.robot.commands.Old_Commands.ManualAim;
 import frc.robot.commands.Old_Commands.ShootCommand;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
@@ -53,7 +56,8 @@ public class RobotContainer {
   private final ClimberCommand ClimberCommand = new ClimberCommand(climberSubsytem, operatorController);
   private final IndexShooterCommand indexShooterCommand  = new IndexShooterCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, operatorController, indexerSubsystem);
   private final LimelightTest limelightTest = new LimelightTest(limelightSubsystem, turretSubsystemNew, operatorController);
-
+  private final DriveForward driveForward = new DriveForward(chassisSubsystem);
+  private final IntakeAuto intakeAuto = new IntakeAuto(intakeSubsystem);
   //private final MotorTest motorTest = new MotorTest(chassisSubsystem, operatorController);
   //private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   //private final ShootCommand shootCommand = new ShootCommand(operatorController, shooterSubsystem, IndexerSubsystem);
@@ -108,6 +112,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return
+     new RunCommand(intakeAuto).andThen(driveForward.withTimeout(2));
   }
 }
