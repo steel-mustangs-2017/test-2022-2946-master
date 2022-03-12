@@ -49,11 +49,11 @@ public class IntakeSubsystem extends SubsystemBase {
         //System.out.println("Intake Out ON");
     }
     public void Intakeup(){
-        intakeMove.set(-.5);
+        intakeMove.set(-.25);
     }
 
     public void IntakeDown(){
-        intakeMove.set(.25);
+        intakeMove.set(0.25);
     }
 
     public void IntakeStopDeploy(){

@@ -43,7 +43,7 @@ public final static class ShooterConstants {
         public final static double SHOOT_DELTA_H = 3.3;
 
         public final static double SHOOTER_ENCODER_TICKS = 2048/600;
-        public static final double EFFICENCY = .33;
+        public static final double EFFICENCY = .36;
 
         //////////////////////////////////////////////////////////
 
@@ -128,14 +128,6 @@ public final static class ClimberConstants {
        
         
     }        
-
-    public static final class AutoConstants{
-
-        public static final double DEPLOY_TIME = .8;
-        public static final double REVERSE_TIME = 3;
-        public static final double SHOOT_TIME = 3;
-
-    }
 }
     
 

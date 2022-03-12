@@ -9,13 +9,11 @@ import frc.robot.subsystems.ChassisSubsystem;
 
 public class DriveForward extends CommandBase {
 
-  private final ChassisSubsystem chassisSubsystem;
-  private final double speed;
+  private ChassisSubsystem chassisSubsystem = new ChassisSubsystem();
 
   /** Creates a new DriveForward. */
-  public DriveForward(double speed, ChassisSubsystem chassisSubsystem) {
+  public DriveForward(ChassisSubsystem chassisSubsystem) {
     this.chassisSubsystem = chassisSubsystem;
-    this.speed = speed;
 
     addRequirements(chassisSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -25,14 +23,12 @@ public class DriveForward extends CommandBase {
   @Override
   public void initialize() {
 
-    chassisSubsystem.Drive(-speed, 0.0);
+    chassisSubsystem.Drive(.25, 0.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    chassisSubsystem.Drive(-speed, 0.0);
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override

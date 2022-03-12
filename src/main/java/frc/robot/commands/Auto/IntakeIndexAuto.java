@@ -5,39 +5,43 @@
 package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ChassisSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
-public class DriveForward extends CommandBase {
+public class IntakeIndexAuto extends CommandBase {
 
-  private final ChassisSubsystem chassisSubsystem;
-  private final double speed;
+  private IntakeSubsystem intakeSubsystem;
+  private IndexerSubsystem indexerSubsystem;
+  /** Creates a new IntakeIndexAuto. */
+  public IntakeIndexAuto(IntakeSubsystem intakeSubsystem, IndexerSubsystem indexerSubsystem) {
 
-  /** Creates a new DriveForward. */
-  public DriveForward(double speed, ChassisSubsystem chassisSubsystem) {
-    this.chassisSubsystem = chassisSubsystem;
-    this.speed = speed;
+    this.indexerSubsystem = indexerSubsystem;
+    this.intakeSubsystem = intakeSubsystem;
 
-    addRequirements(chassisSubsystem);
+    addRequirements(intakeSubsystem, indexerSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    chassisSubsystem.Drive(-speed, 0.0);
+    intakeSubsystem.StopIntake();
+    indexerSubsystem.StopIndexerFeeder();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    chassisSubsystem.Drive(-speed, 0.0);
+
+    indexerSubsystem.RunIndexerFeeder();
+    intakeSubsystem.RunIntake();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    chassisSubsystem.DriveStop();
+    intakeSubsystem.StopIntake();
+    indexerSubsystem.StopIndexerFeeder();
   }
 
   // Returns true when the command should end.

@@ -7,22 +7,22 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.ControlerConstants;
-import frc.robot.commands.Auto.AutoShootCommand;
 import frc.robot.commands.Auto.DriveForward;
-import frc.robot.commands.Auto.IntakeIndexAuto;
+import frc.robot.commands.Auto.IntakeAuto;
 import frc.robot.commands.Control_Commands.ClimberCommand;
 import frc.robot.commands.Control_Commands.DriveCommand;
 import frc.robot.commands.Control_Commands.IndexShooterCommand;
 import frc.robot.commands.Control_Commands.IntakeCommand;
-
+import frc.robot.commands.Control_Commands.LimelightTest;
+import frc.robot.commands.Old_Commands.ManualAim;
+import frc.robot.commands.Old_Commands.ShootCommand;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.subsystems.ClimberSubsytem;
 import frc.robot.subsystems.LimelightSubsystem;
 //import frc.robot.subsystems.LimelightSubsystem;
@@ -55,8 +55,9 @@ public class RobotContainer {
   private final IntakeCommand IntakeCommand = new IntakeCommand(operatorController,intakeSubsystem);
   private final ClimberCommand ClimberCommand = new ClimberCommand(climberSubsytem, operatorController);
   private final IndexShooterCommand indexShooterCommand  = new IndexShooterCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, operatorController, indexerSubsystem);
-  private final DriveForward driveForward = new DriveForward(.35, chassisSubsystem);
-  private final IntakeIndexAuto intakeIndexAuto = new IntakeIndexAuto(intakeSubsystem, indexerSubsystem);
+  private final LimelightTest limelightTest = new LimelightTest(limelightSubsystem, turretSubsystemNew, operatorController);
+  private final DriveForward driveForward = new DriveForward(chassisSubsystem);
+  private final IntakeAuto intakeAuto = new IntakeAuto(intakeSubsystem);
   //private final MotorTest motorTest = new MotorTest(chassisSubsystem, operatorController);
   //private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   //private final ShootCommand shootCommand = new ShootCommand(operatorController, shooterSubsystem, IndexerSubsystem);
@@ -112,11 +113,5 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return
-    
-      driveForward.withTimeout(AutoConstants.REVERSE_TIME).andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME)).andThen(new DriveForward(.45, chassisSubsystem).withTimeout(AutoConstants.REVERSE_TIME));
-  }
+null;  }
 }
-
-/*((new StartEndCommand(() -> intakeSubsystem.IntakeDown(), () -> intakeSubsystem.IntakeStopDeploy(), intakeSubsystem).withTimeout(AutoConstants.DEPLOY_TIME).andThen(new RunCommand(() -> {intakeSubsystem.RunIntake(); indexerSubsystem.RunIndexerFeeder();}, intakeSubsystem))).raceWith(
-      new DriveForward(0.25,chassisSubsystem).withTimeout(AutoConstants.REVERSE_TIME))).andThen(
-        new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME) ); */

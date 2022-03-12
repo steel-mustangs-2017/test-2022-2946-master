@@ -53,6 +53,7 @@ public class IndexShooterCommand extends CommandBase {
     turretSubsystemNew.StopTurn();
     
     indexerSubsystem.StopIndex();
+    turretSubsystemNew.reset();
     
   }
 
@@ -84,7 +85,7 @@ public class IndexShooterCommand extends CommandBase {
 
                 else if (shootTime.get() > 4){
                   System.out.println("Looking For Target");
-                  double turretturn = -operatorControler.getRawAxis(ControlerConstants.TURRET_MANUAL_AXIS_ID);
+                  double turretturn = operatorControler.getRawAxis(ControlerConstants.TURRET_MANUAL_AXIS_ID);
 
                   if(Math.abs(turretturn) < .25){turretturn = 0;}
                   turretSubsystemNew.TurnManual(turretturn/4);
@@ -104,12 +105,12 @@ public class IndexShooterCommand extends CommandBase {
         limelightSubsystem.setLedOff();
         limelightSubsystem.setCamera();
 
-        double turretturn = -operatorControler.getRawAxis(ControlerConstants.TURRET_MANUAL_AXIS_ID);
+        double turretturn = operatorControler.getRawAxis(ControlerConstants.TURRET_MANUAL_AXIS_ID);
 
         if(Math.abs(turretturn) < .15){turretturn = 0;}
-        turretSubsystemNew.TurnManual(turretturn/3);
+        turretSubsystemNew.TurnManual(turretturn/4);
 
-        shooterSubsystemNew.ShootManual(operatorControler.getRawAxis(ControlerConstants.SHOOTER_MANUAL_AXIS_ID)/4);
+        shooterSubsystemNew.ShootManual(operatorControler.getRawAxis(ControlerConstants.SHOOTER_MANUAL_AXIS_ID));
 
         if(operatorControler.getRawButton(ControlerConstants.INDEXER_MANUAL_ID)){indexerSubsystem.RunIndex();}
         else{indexerSubsystem.StopIndex();}
@@ -132,7 +133,8 @@ public class IndexShooterCommand extends CommandBase {
     turretSubsystemNew.StopTurn();
     shooterSubsystemNew.StopShoot();
     indexerSubsystem.StopIndex();
-    
+    limelightSubsystem.setLedOff();
+    limelightSubsystem.setCamera();
   }
 
   // Returns true when the command should end.

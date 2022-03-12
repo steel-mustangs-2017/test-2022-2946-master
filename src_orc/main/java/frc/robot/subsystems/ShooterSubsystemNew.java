@@ -42,7 +42,6 @@ public class ShooterSubsystemNew extends SubsystemBase {
     shooterRight.config_kP(0, kp);
     shooterRight.config_kI(0, ki);
     shooterRight.config_kD(0, kd);
-    
 
     shooterLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 30);
 
@@ -80,7 +79,6 @@ public class ShooterSubsystemNew extends SubsystemBase {
     return ev/ShooterConstants.SHOOTER_ENCODER_TICKS;
   }
   public double RPM_to_Encoder(double RPM){
-    
     return RPM*ShooterConstants.SHOOTER_ENCODER_TICKS;
   }
 

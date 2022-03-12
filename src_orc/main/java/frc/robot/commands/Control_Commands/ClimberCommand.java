@@ -23,11 +23,11 @@ public class ClimberCommand extends CommandBase {
         this.operatorController  = operatorController;
     
         addRequirements(climberSubsytem);
-        
+        climberSubsytem.StopClimb();
+        climberSubsytem.StopPivot();
 
     }
 
-  
     @Override 
     public void execute() {
 

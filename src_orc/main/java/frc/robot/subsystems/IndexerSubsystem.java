@@ -50,7 +50,7 @@ public class IndexerSubsystem extends SubsystemBase{
         indexerFeeder.set(0);
     }
     public void RunIndexerFeeder() {
-        indexerFeeder.set(-speed*2);
+        indexerFeeder.set(-speed);
     }
     public void StopIndexerFeeder() {
         indexerFeeder.set(0);
