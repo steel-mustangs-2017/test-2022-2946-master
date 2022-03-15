@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
 
+import java.util.concurrent.Delayed;
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -34,8 +36,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
     public void RunIntake(){
-        intakeMotor.set(1
-        );
+        intakeMotor.set(1);
        System.out.println("Intake In ON");
     }
 
@@ -50,6 +51,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
     public void Intakeup(){
         intakeMove.set(-.5);
+        
     }
 
     public void IntakeDown(){
