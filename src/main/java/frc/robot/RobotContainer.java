@@ -15,8 +15,8 @@ import frc.robot.commands.Auto.IntakeIndexAuto;
 import frc.robot.commands.Control_Commands.ClimberCommand;
 import frc.robot.commands.Control_Commands.DriveCommand;
 import frc.robot.commands.Control_Commands.IndexShooterCommand;
-import frc.robot.commands.Control_Commands.IntakeCommand;
-
+import frc.robot.commands.Control_Commands.intake1button;
+import frc.robot.commands.Control_Commands.intake1button;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -52,7 +52,7 @@ public class RobotContainer {
 
 
   private final DriveCommand driveCommand = new DriveCommand(driverController, chassisSubsystem);
-  private final IntakeCommand IntakeCommand = new IntakeCommand(operatorController,intakeSubsystem);
+  private final intake1button intake1button = new intake1button(operatorController,intakeSubsystem);
   private final ClimberCommand ClimberCommand = new ClimberCommand(climberSubsytem, operatorController);
   private final IndexShooterCommand indexShooterCommand  = new IndexShooterCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, operatorController, indexerSubsystem);
   private final DriveForward driveForward = new DriveForward(.35, chassisSubsystem);
@@ -91,7 +91,7 @@ public class RobotContainer {
   private void configureDefaultCommands() {
 
     chassisSubsystem.setDefaultCommand(driveCommand);
-    intakeSubsystem.setDefaultCommand(IntakeCommand);
+    intakeSubsystem.setDefaultCommand(intake1button);
     climberSubsytem.setDefaultCommand(ClimberCommand);
     shooterSubsystemNew.setDefaultCommand(indexShooterCommand);
     turretSubsystemNew.setDefaultCommand(indexShooterCommand);
@@ -113,7 +113,7 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return
     
-      driveForward.withTimeout(AutoConstants.REVERSE_TIME).andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME)).andThen(new DriveForward(.45, chassisSubsystem).withTimeout(AutoConstants.REVERSE_TIME));
+      driveForward.withTimeout(AutoConstants.REVERSE_TIME).andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME)).andThen(new DriveForward(.45, chassisSubsystem).withTimeout(AutoConstants.FORWARD_TIME));
   }
 }
 

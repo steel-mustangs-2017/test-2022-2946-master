@@ -136,6 +136,7 @@ public final static class ClimberConstants {
         public static final double DEPLOY_TIME = .8;
         public static final double REVERSE_TIME = 3;
         public static final double SHOOT_TIME = 3;
+        public static final double FORWARD_TIME = 2;
 
     }
 }
