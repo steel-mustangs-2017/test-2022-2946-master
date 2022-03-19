@@ -112,11 +112,9 @@ public class IndexShooterCommand extends CommandBase {
         shooterSubsystemNew.ShootManual(operatorControler.getRawAxis(ControlerConstants.SHOOTER_MANUAL_AXIS_ID)/4);
 
         if(operatorControler.getRawButton(ControlerConstants.INDEXER_MANUAL_ID)){indexerSubsystem.RunIndex();}
-        else{indexerSubsystem.StopIndex();}
+       // else{indexerSubsystem.StopIndex();}
 
-        if(operatorControler.getRawButton(ControlerConstants.INDEXER_FEEDER_ID)){indexerSubsystem.RunIndexerFeeder();}
-        
-
+       else if(operatorControler.getRawButton(ControlerConstants.INDEXER_FEEDER_ID)){indexerSubsystem.RunIndexerFeeder();indexerSubsystem.RunIndex();}
         else if(operatorControler.getRawButton(ControlerConstants.INTAKE_OUT_ID)){indexerSubsystem.ReverseIndex();}
         else{indexerSubsystem.StopIndexerFeeder();}
 

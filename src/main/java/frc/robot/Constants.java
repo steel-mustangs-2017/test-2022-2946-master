@@ -20,8 +20,7 @@ public final class Constants {
         public final static int BackLeft_ID = 3;
     }
     public final class IntakeConstants{
-        public final static int intakeMotor_ID = 10
-        ;
+        public final static int intakeMotor_ID = 18;
         public final static int intake_move = 19;
         public final static double timer_second_down = 1.5;
         public final static double timer_second_up = 1.5;

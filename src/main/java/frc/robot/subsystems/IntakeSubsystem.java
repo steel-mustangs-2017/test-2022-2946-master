@@ -12,14 +12,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
     
-    private static final WPI_TalonSRX intakeMotor = new WPI_TalonSRX(IntakeConstants.intakeMotor_ID);
+    private static final WPI_TalonFX intakeMotor = new WPI_TalonFX(IntakeConstants.intakeMotor_ID);
     private static final WPI_TalonFX intakeMove = new WPI_TalonFX(IntakeConstants.intake_move);
     
     public IntakeSubsystem(){
 
         intakeMotor.configFactoryDefault();
 
-        intakeMotor.setInverted(false);
+        intakeMotor.setInverted(true);
 
         intakeMove.configFactoryDefault();
         intakeMove.setNeutralMode(NeutralMode.Brake);

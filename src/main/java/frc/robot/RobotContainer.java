@@ -16,7 +16,7 @@ import frc.robot.commands.Control_Commands.ClimberCommand;
 import frc.robot.commands.Control_Commands.DriveCommand;
 import frc.robot.commands.Control_Commands.IndexShooterCommand;
 import frc.robot.commands.Control_Commands.intake1button;
-import frc.robot.commands.Control_Commands.intake1button;
+import frc.robot.commands.Control_Commands.IntakeCommand;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -52,7 +52,8 @@ public class RobotContainer {
 
 
   private final DriveCommand driveCommand = new DriveCommand(driverController, chassisSubsystem);
-  private final intake1button intake1button = new intake1button(operatorController,intakeSubsystem);
+  private final intake1button Intake1button = new intake1button(operatorController,intakeSubsystem);
+  private final IntakeCommand intakeCommand = new IntakeCommand(operatorController,intakeSubsystem);
   private final ClimberCommand ClimberCommand = new ClimberCommand(climberSubsytem, operatorController);
   private final IndexShooterCommand indexShooterCommand  = new IndexShooterCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, operatorController, indexerSubsystem);
   private final DriveForward driveForward = new DriveForward(.35, chassisSubsystem);
@@ -91,7 +92,7 @@ public class RobotContainer {
   private void configureDefaultCommands() {
 
     chassisSubsystem.setDefaultCommand(driveCommand);
-    intakeSubsystem.setDefaultCommand(intake1button);
+    intakeSubsystem.setDefaultCommand(intakeCommand);
     climberSubsytem.setDefaultCommand(ClimberCommand);
     shooterSubsystemNew.setDefaultCommand(indexShooterCommand);
     turretSubsystemNew.setDefaultCommand(indexShooterCommand);
