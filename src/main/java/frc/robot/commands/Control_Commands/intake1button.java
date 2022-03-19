@@ -10,6 +10,7 @@ import java.sql.Time;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.PrintCommand;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Constants.ControlerConstants;
 import frc.robot.Constants.IntakeConstants;
@@ -41,10 +42,11 @@ public class intake1button extends CommandBase {
   @Override
   public void execute() {
     super.execute();
-      if(operatorController.getRawButtonPressed(ControlerConstants.CONTROLLER_BUTTON_A_ID)){
+      if(operatorController.getRawButtonPressed(ControlerConstants.CONTROLLER_BUTTON_A_ID) && up == true){
           intakeSubsystem.IntakeDown();
           timerDown.reset();
-          timerDown.start();               
+          timerDown.start();
+          System.out.println("intake go down" );               
       }
       if(operatorController.getRawButton(ControlerConstants.CONTROLLER_BUTTON_A_ID)){
         intakeSubsystem.RunIntake();
@@ -58,7 +60,7 @@ public class intake1button extends CommandBase {
         timerDown.reset();
         up = false;
       }
-      if(operatorController.getRawButtonReleased(ControlerConstants.CONTROLLER_BUTTON_A_ID)){
+      if(operatorController.getRawButtonReleased(ControlerConstants.CONTROLLER_BUTTON_A_ID) && up == false){
         intakeSubsystem.Intakeup();
         timerUp.reset();
         timerUp.start();
@@ -68,7 +70,9 @@ public class intake1button extends CommandBase {
         up = true;
         timerUp.reset();
         timerUp.stop();
+        System.out.println("intake go up" );
       }
+      
 
       
   }

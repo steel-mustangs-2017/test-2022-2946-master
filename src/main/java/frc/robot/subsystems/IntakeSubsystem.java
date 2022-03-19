@@ -22,7 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor.setInverted(false);
 
         intakeMove.configFactoryDefault();
-        intakeMove.setNeutralMode(NeutralMode.Coast);
+        intakeMove.setNeutralMode(NeutralMode.Brake);
 
         
 
@@ -37,7 +37,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
     public void RunIntake(){
         intakeMotor.set(1);
-       System.out.println("Intake In ON");
+     //  System.out.println("Intake In ON");
     }
 
     public void StopIntake(){

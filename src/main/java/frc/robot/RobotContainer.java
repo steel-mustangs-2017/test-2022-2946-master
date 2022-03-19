@@ -113,10 +113,19 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return
     
-      driveForward.withTimeout(AutoConstants.REVERSE_TIME).andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME)).andThen(new DriveForward(.45, chassisSubsystem).withTimeout(AutoConstants.FORWARD_TIME));
-  }
-}
+      driveForward.withTimeout(AutoConstants.REVERSE_TIME).andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME)) 
+      .andThen(new IntakeIndexAuto(intakeSubsystem, indexerSubsystem))
+      .andThen(new DriveForward(.45, chassisSubsystem).withTimeout(AutoConstants.FORWARD_TIME))
+      .andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME));
+      
+      
+  
 
-/*((new StartEndCommand(() -> intakeSubsystem.IntakeDown(), () -> intakeSubsystem.IntakeStopDeploy(), intakeSubsystem).withTimeout(AutoConstants.DEPLOY_TIME).andThen(new RunCommand(() -> {intakeSubsystem.RunIntake(); indexerSubsystem.RunIndexerFeeder();}, intakeSubsystem))).raceWith(
-      new DriveForward(0.25,chassisSubsystem).withTimeout(AutoConstants.REVERSE_TIME))).andThen(
-        new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME) ); */
+/*new StartEndCommand(() -> intakeSubsystem.IntakeDown(), () -> intakeSubsystem.IntakeStopDeploy(), intakeSubsystem).withTimeout(AutoConstants.DEPLOY_TIME)
+.andThen(new RunCommand(() -> {intakeSubsystem.RunIntake(); indexerSubsystem.RunIndexerFeeder();}, intakeSubsystem.raceWith(
+      new DriveForward(0.25,chassisSubsystem).withTimeout(AutoConstants.REVERSE_TIME))
+      .andThen(
+        new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME) ); 
+  */
+      }
+      }

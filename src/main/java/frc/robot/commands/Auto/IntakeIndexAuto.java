@@ -4,14 +4,18 @@
 
 package frc.robot.commands.Auto;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.Constants.IntakeConstants;;
 
 public class IntakeIndexAuto extends CommandBase {
 
   private IntakeSubsystem intakeSubsystem;
   private IndexerSubsystem indexerSubsystem;
+  private final Timer timerDown =new Timer();
+  private final Timer timerUp =new Timer();
   /** Creates a new IntakeIndexAuto. */
   public IntakeIndexAuto(IntakeSubsystem intakeSubsystem, IndexerSubsystem indexerSubsystem) {
 
@@ -23,6 +27,20 @@ public class IntakeIndexAuto extends CommandBase {
   }
 
   // Called when the command is initially scheduled.
+  public void AutoStart(){
+    intakeSubsystem.IntakeDown();
+    timerDown.reset();
+    timerDown.start();
+    if(timerDown.hasElapsed(IntakeConstants.timer_second_down)){
+      intakeSubsystem.IntakeStopDeploy();
+      timerDown.stop();
+      timerDown.reset();
+    }
+  }
+
+  public void AutoInturupt(){
+    
+  }
   @Override
   public void initialize() {
     intakeSubsystem.StopIntake();
@@ -36,6 +54,7 @@ public class IntakeIndexAuto extends CommandBase {
     indexerSubsystem.RunIndexerFeeder();
     intakeSubsystem.RunIntake();
   }
+  
 
   // Called once the command ends or is interrupted.
   @Override
