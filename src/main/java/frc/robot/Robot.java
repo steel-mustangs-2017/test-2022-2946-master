@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import frc.robot.Constants.ControlerConstants;
 
 
@@ -104,14 +106,22 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
-    CommandScheduler.getInstance().cancelAll();
+  //  CommandScheduler.getInstance().cancelAll();
   }
 
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-      final Joystick operatorController = new Joystick(ControlerConstants.PORT_ID_OPERATOR_CONTROLER);
-       System.out.println("POV "+operatorController.getPOV());
+     // final Joystick operatorController = new Joystick(ControlerConstants.PORT_ID_OPERATOR_CONTROLER);
+       //System.out.println("POV "+operatorController.getPOV());
+      //DigitalInput forwardLimitSwitch = null;
+       //if(forwardLimitSwitch == null){
+        //forwardLimitSwitch = new DigitalInput(1);
 
+       
+       //System.out.println("forward limit switch on ");
+      // System.out.println(forwardLimitSwitch.get());   
+
+       }
   }
-}
+
