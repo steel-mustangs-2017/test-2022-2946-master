@@ -102,11 +102,12 @@ public class Robot extends TimedRobot {
       else{operatorControler.setRumble(RumbleType.kLeftRumble, 0);
         operatorControler.setRumble(RumbleType.kRightRumble, 0);}
   }
-
+  DigitalInput forwardLimitSwitch;
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
   //  CommandScheduler.getInstance().cancelAll();
+      forwardLimitSwitch = new DigitalInput(1);
   }
 
   /** This function is called periodically during test mode. */
@@ -119,8 +120,7 @@ public class Robot extends TimedRobot {
         //forwardLimitSwitch = new DigitalInput(1);
 
        
-       //System.out.println("forward limit switch on ");
-      // System.out.println(forwardLimitSwitch.get());   
+      System.out.println("forward limit switch on "+ forwardLimitSwitch.get());   
 
        }
   }

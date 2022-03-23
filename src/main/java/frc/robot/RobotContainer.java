@@ -92,7 +92,7 @@ public class RobotContainer {
   private void configureDefaultCommands() {
 
     chassisSubsystem.setDefaultCommand(driveCommand);
-    intakeSubsystem.setDefaultCommand(intakeCommand);
+    intakeSubsystem.setDefaultCommand(Intake1button);
     climberSubsytem.setDefaultCommand(ClimberCommand);
     shooterSubsystemNew.setDefaultCommand(indexShooterCommand);
     turretSubsystemNew.setDefaultCommand(indexShooterCommand);
@@ -112,11 +112,11 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return
+    return //new StartEndCommand(() -> intakeSubsystem.IntakeDown(), () -> intakeSubsystem.IntakeStopDeploy(), intakeSubsystem).withTimeout(AutoConstants.DEPLOY_TIME);
     
-      driveForward.withTimeout(AutoConstants.REVERSE_TIME).andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME)) 
-      .andThen(new IntakeIndexAuto(intakeSubsystem, indexerSubsystem))
-      .andThen(new DriveForward(.45, chassisSubsystem).withTimeout(AutoConstants.FORWARD_TIME))
+    new StartEndCommand(() -> intakeSubsystem.IntakeDown(), () -> intakeSubsystem.IntakeStopDeploy(), intakeSubsystem).withTimeout(AutoConstants.DEPLOY_TIME).andThen(driveForward.withTimeout(AutoConstants.REVERSE_TIME)).andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME)) 
+      .andThen((new IntakeIndexAuto(intakeSubsystem, indexerSubsystem))
+      .raceWith(new DriveForward(.35, chassisSubsystem)).withTimeout(AutoConstants.FORWARD_TIME))
       .andThen(new AutoShootCommand(shooterSubsystemNew, limelightSubsystem, turretSubsystemNew, indexerSubsystem).withTimeout(AutoConstants.SHOOT_TIME));
       
       

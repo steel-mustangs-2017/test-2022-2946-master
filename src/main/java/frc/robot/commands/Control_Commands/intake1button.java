@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.PrintCommand;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.ControlerConstants;
 import frc.robot.Constants.IntakeConstants;
 
@@ -46,26 +47,28 @@ public class intake1button extends CommandBase {
           intakeSubsystem.IntakeDown();
           timerDown.reset();
           timerDown.start();
-          System.out.println("intake go down" );               
+                       
       }
       if(operatorController.getRawButton(ControlerConstants.CONTROLLER_BUTTON_A_ID)){
         intakeSubsystem.RunIntake();
+       
       }
       else{
         intakeSubsystem.StopIntake();
       }
-      if(timerDown.hasElapsed(IntakeConstants.timer_second_down)){
+      if(timerDown.hasElapsed(AutoConstants.DEPLOY_TIME)){
         intakeSubsystem.IntakeStopDeploy();
         timerDown.stop();
         timerDown.reset();
         up = false;
+        System.out.println("intake go down" );  
       }
       if(operatorController.getRawButtonReleased(ControlerConstants.CONTROLLER_BUTTON_A_ID) && up == false){
         intakeSubsystem.Intakeup();
         timerUp.reset();
         timerUp.start();
       }
-      if(timerUp.hasElapsed(IntakeConstants.timer_second_up)){
+      if(timerUp.hasElapsed(AutoConstants.RETRACT_TIME)){
         intakeSubsystem.IntakeStopDeploy();
         up = true;
         timerUp.reset();

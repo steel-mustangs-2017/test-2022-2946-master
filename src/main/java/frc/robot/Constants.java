@@ -22,8 +22,6 @@ public final class Constants {
     public final class IntakeConstants{
         public final static int intakeMotor_ID = 18;
         public final static int intake_move = 19;
-        public final static double timer_second_down = 1.5;
-        public final static double timer_second_up = 1.5;
     }
 
     /*public final class LimelightContstants {
@@ -44,7 +42,7 @@ public final static class ShooterConstants {
         public final static double SHOOT_DELTA_H = 3.3;
 
         public final static double SHOOTER_ENCODER_TICKS = 2048/600;
-        public static final double EFFICENCY = .33;
+        public static final double EFFICENCY = .35;
 
         //////////////////////////////////////////////////////////
 
@@ -63,7 +61,7 @@ public final static class ShooterConstants {
     public final static class IndexerConstants {
         public final static int IndexerTop = 8;
         public final static int IndexerBot = 7;
-        public final static int IndexerFeeder = 6;
+        public final static int IndexerFeeder = 10;
 
     }
 
@@ -132,10 +130,11 @@ public final static class ClimberConstants {
 
     public static final class AutoConstants{
 
-        public static final double DEPLOY_TIME = .8;
+        public static final double DEPLOY_TIME = .56000000068;
         public static final double REVERSE_TIME = 3;
         public static final double SHOOT_TIME = 3;
         public static final double FORWARD_TIME = 2;
+        public static final double RETRACT_TIME = .4;
 
     }
 }

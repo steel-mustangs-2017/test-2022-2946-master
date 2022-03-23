@@ -27,7 +27,7 @@ public class IntakeIndexAuto extends CommandBase {
   }
 
   // Called when the command is initially scheduled.
-  public void AutoStart(){
+  /*public void AutoStart(){
     intakeSubsystem.IntakeDown();
     timerDown.reset();
     timerDown.start();
@@ -37,7 +37,7 @@ public class IntakeIndexAuto extends CommandBase {
       timerDown.reset();
     }
   }
-
+*/
   public void AutoInturupt(){
     
   }

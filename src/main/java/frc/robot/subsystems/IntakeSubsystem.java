@@ -14,6 +14,7 @@ public class IntakeSubsystem extends SubsystemBase {
     
     private static final WPI_TalonFX intakeMotor = new WPI_TalonFX(IntakeConstants.intakeMotor_ID);
     private static final WPI_TalonFX intakeMove = new WPI_TalonFX(IntakeConstants.intake_move);
+    public static Object intake_move;
     
     public IntakeSubsystem(){
 
@@ -36,7 +37,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
     public void RunIntake(){
-        intakeMotor.set(1);
+        intakeMotor.set(.25);
      //  System.out.println("Intake In ON");
     }
 
@@ -50,7 +51,7 @@ public class IntakeSubsystem extends SubsystemBase {
         //System.out.println("Intake Out ON");
     }
     public void Intakeup(){
-        intakeMove.set(-.5);
+        intakeMove.set(-.3);
         
     }
 
@@ -60,6 +61,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void IntakeStopDeploy(){
         intakeMove.set(0);
+        intakeMove.setNeutralMode(NeutralMode.Brake);
     }
 
 }
